@@ -36,8 +36,12 @@ $(document).ready(function(){
     var userGuesses = document.getElementById("textArea").value;
     userGuesses = userGuesses.replace(/(\r\n|\n|\r)/gm," ");
     var guessArray = userGuesses.split(" ");
-    guessArray.forEach(function(dino){
-      $('#dinoGuessOutput').append('<li>' + dino + '</li>');
-    });
+    for (var i = 0; i < guessArray.length; i++) {
+      if (guessArray[i] === dinoArray[i]) {
+        $('#dinoGuessOutput').append('<li class="correct">' + guessArray[i] + '</li>');
+      } else {
+        $('#dinoGuessOutput').append('<li class="incorrect">' + guessArray[i] + '</li>');
+      }
+    }
   });
 });
