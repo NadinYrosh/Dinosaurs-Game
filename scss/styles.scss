@@ -2,11 +2,12 @@ $gray : #d3d3d3;
 $green : #75B975;
 $red : #900C3F;
 $purple : #8E35EF;
-$sand : #fef7eb;
+$sand : #EAFAF1;
 
 .box {
+  margin-top: 10px;
   background: $sand;
-  border: 2px solid black;
+  border: 2px solid #7FB3D5;
   padding: 40px 80px;
   .button {
     font-weight: bold;
@@ -16,13 +17,24 @@ $sand : #fef7eb;
   }
 }
 
+#dinoNumber{
+  border-radius: 7px;
+  height: 33px;
+  width: 45px;
+  text-align: center;
+}
+
+lable {
+  font-size: 20px;
+}
+
 #textArea {
   -webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 100%;
   height: 50%;
-	border: 3px solid $purple;
+	border: 3px solid #7FB3D5;
 	padding: 5px;
 	font-family: Tahoma, sans-serif;
 }
@@ -52,4 +64,15 @@ $sand : #fef7eb;
 
 .incorrect {
   color: $red;
+}
+
+$color1 : #5D6D7E;
+$color2 : #FCF3CF;
+
+#grad {
+  background: #920E41; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(90deg, $color1, $color2); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(90deg, $color1, $color2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(90deg, $color1, $color2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(90deg, $color1, $color2); /* Standard syntax */
 }

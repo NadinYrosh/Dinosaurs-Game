@@ -1,35 +1,16 @@
-//var Message = require('./../js/message.js').Message;
+var DinoApiClass = require('./../js/dino.js').DinoApiClass;
 
 var dinoArray;
-$(document).ready(function(){
-  $(".dinoForm").submit(function(event) {
-    event.preventDefault();
-    $("#textArea").val('');
-    dinoArray = [];
-    $(".comparison").hide();
-    var numberOfDinos = parseInt($("#dinoNumber").val());
-    $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=' + numberOfDinos, function(response) {
-      dinoArray = response[0];
-      $("#dinoName").text(dinoArray[0]);
-      var index = 1;
-      var intervalID = setInterval(function() {
-        $("#dinoName").text(dinoArray[index]);
-        index++;
-        if (index > dinoArray.length) {
-          clearInterval(intervalID);
-          $("#dinoName").text("");
-          $(".dinoGuess").show();
-        }
-      }, 3000);
-    });
-  });
 
+var playGame = function(dinoArray) {
   $('.dinoGuessInput').submit(function(event) {
     event.preventDefault();
     $(".dinoGuess").hide();
     $(".comparison").show();
     $('#displayDino').text("");
     $('#dinoGuessOutput').text("");
+    console.log("attaching dinoGuessInput submit listener");
+    console.log(dinoArray);
     dinoArray.forEach(function(dino){
       $('#displayDino').append('<li>' + dino + '</li>');
     });
@@ -43,5 +24,17 @@ $(document).ready(function(){
         $('#dinoGuessOutput').append('<li class="incorrect">' + guessArray[i] + '</li>');
       }
     }
+  });
+}
+
+$(document).ready(function(){
+  $(".dinoForm").submit(function(event) {
+    event.preventDefault();
+    $("#textArea").val('');
+    $(".comparison").hide();
+    var numberOfDinos = parseInt($("#dinoNumber").val());
+
+    var myDinoObject = new DinoApiClass();
+    myDinoObject.makeRequest(numberOfDinos, playGame);
   });
 });
